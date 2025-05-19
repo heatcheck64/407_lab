@@ -1,0 +1,33 @@
+version: 2
+
+sources:
+  - name: raw_data
+    database: RAW_DATA
+    schema: dbt_learn_training_data
+    tables:
+      - name: raw_sales
+        description: "POS transaction data"
+        loaded_at_field: sale_date_ts        
+        freshness:  
+          warn_after:
+            count: 2
+            period: day
+        columns:
+          - name: sale_id
+            tests: [not_null, unique]
+          - name: product_id
+            tests: [not_null]
+          - name: store_id
+            tests: [not_null]
+
+      - name: raw_products
+        description: "Snack product master data"
+        columns:
+          - name: product_id
+            tests: [not_null, unique]
+
+      - name: raw_stores
+        description: "Store locations & regions"
+        columns:
+          - name: store_id
+            tests: [not_null, unique]
