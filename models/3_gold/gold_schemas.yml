@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: daily_sales_summary
+    description: "Aggregated daily sales summary by region."
+    columns:
+      - name: sale_date
+      - name: region
+      - name: total_sales
+      - name: revenue
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: avg_quantity_per_sale

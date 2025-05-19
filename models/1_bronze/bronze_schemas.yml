@@ -1,0 +1,31 @@
+version: 2
+models:
+  - name: stg_sales
+    description: "Staging model for sales transactions."
+    columns:
+      - name: id
+        tests: [not_null, unique]
+      - name: product_id
+        tests: [not_null]
+      - name: store_id
+        tests: [not_null]
+      - name: sale_date
+      - name: quantity
+      - name: price_per_unit
+      - name: discount_applied
+
+  - name: stg_products
+    description: "Staging model for product master data."
+    columns:
+      - name: product_id
+        tests: [not_null, unique]
+      - name: category
+        tests:
+          - accepted_values:
+              values: ['Chocolate', 'Gum', 'Chips']
+
+  - name: stg_stores
+    description: "Staging model for store information."
+    columns:
+      - name: store_id
+        tests: [not_null, unique]

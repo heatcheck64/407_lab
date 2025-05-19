@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: sales_with_details
+    description: "Joined model combining sales, product, and store details."
+    columns:
+      - name: sale_id
+        tests: [not_null]
+      - name: sale_date
+      - name: quantity
+      - name: price_per_unit
+      - name: discount_applied
+      - name: product_name
+      - name: category
+      - name: region
+      - name: store_type
