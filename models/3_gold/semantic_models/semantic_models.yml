@@ -1,0 +1,31 @@
+semantic_models:
+- name: daily_sales_summary
+  description: Aggregated daily sales summary by region.
+  model: ref('daily_sales_summary')
+  defaults:
+    agg_time_dimension: date
+  entities:
+  - name: sale
+    type: primary
+    expr: sale_id
+  dimensions:
+  - name: date
+    expr: sale_date
+    type: time
+    type_params:
+      time_granularity: day
+  - name: region
+    expr: region
+    type: categorical
+  measures:
+  - name: revenue
+    description: The total revenue from sales.
+    agg: sum
+    create_metric: true
+  - name: count_sale
+    agg: count
+    create_metric: true
+    expr: sale_id
+
+
+
